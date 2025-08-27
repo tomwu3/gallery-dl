@@ -11,9 +11,10 @@
     -d, --destination PATH      Target location for file downloads
     -D, --directory PATH        Exact location for file downloads
     -X, --extractors PATH       Load external extractors from PATH
-    --user-agent UA             User-Agent request header
+    -a, --user-agent UA         User-Agent request header
     --clear-cache MODULE        Delete cached login sessions, cookies, etc. for
                                 MODULE (ALL to delete everything)
+    --compat                    Restore legacy 'category' names
 
 ## Update Options:
     -U, --update                Update to the latest version
@@ -48,13 +49,19 @@
     -K, --list-keywords         Print a list of available keywords and example
                                 values for the given URLs
     -e, --error-file FILE       Add input URLs which returned an error to FILE
-    -N, --print [EVENT:]FORMAT  Write FORMAT during EVENT (default 'prepare') to
-                                standard output. Examples: 'id' or
-                                'post:{md5[:8]}'
+    -N, --print [EVENT:]FORMAT  Write FORMAT during EVENT (default 'prepare')
+                                to standard output instead of downloading
+                                files. Can be used multiple times. Examples:
+                                'id' or 'post:{md5[:8]}'
+    --Print [EVENT:]FORMAT      Like --print, but downloads files as well
     --print-to-file [EVENT:]FORMAT FILE
-                                Append FORMAT during EVENT to FILE
+                                Append FORMAT during EVENT to FILE instead of
+                                downloading files. Can be used multiple times
+    --Print-to-file [EVENT:]FORMAT FILE
+                                Like --print-to-file, but downloads files as
+                                well
     --list-modules              Print a list of available extractor modules
-    --list-extractors CATEGORIES
+    --list-extractors [CATEGORIES]
                                 Print a list of extractor classes with
                                 description, (sub)category and example URL
     --write-log FILE            Write logging output to FILE
@@ -67,20 +74,26 @@
 
 ## Networking Options:
     -R, --retries N             Maximum number of retries for failed HTTP
-                                requests or -1 for infinite retries (default: 4)
+                                requests or -1 for infinite retries (default:
+                                4)
     --http-timeout SECONDS      Timeout for HTTP connections (default: 30.0)
     --proxy URL                 Use the specified proxy
     --source-address IP         Client-side IP address to bind to
+    -4, --force-ipv4            Make all connections via IPv4
+    -6, --force-ipv6            Make all connections via IPv6
     --no-check-certificate      Disable HTTPS certificate validation
 
 ## Downloader Options:
-    -r, --limit-rate RATE       Maximum download rate (e.g. 500k or 2.5M)
+    -r, --limit-rate RATE       Maximum download rate (e.g. 500k, 2.5M, or
+                                800k-2M)
     --chunk-size SIZE           Size of in-memory data chunks (default: 32k)
     --sleep SECONDS             Number of seconds to wait before each download.
                                 This can be either a constant value or a range
                                 (e.g. 2.7 or 2.0-3.5)
     --sleep-request SECONDS     Number of seconds to wait between HTTP requests
                                 during data extraction
+    --sleep-429 SECONDS         Number of seconds to wait when receiving a '429
+                                Too Many Requests' response
     --sleep-extractor SECONDS   Number of seconds to wait before starting data
                                 extraction for an input URL
     --no-part                   Do not use .part files
@@ -115,15 +128,19 @@
                                 container (default), 'all' for all containers)
 
 ## Selection Options:
-    -A, --abort N               Stop current extractor run after N consecutive
+    -A, --abort N[:TARGET]      Stop current extractor(s) after N consecutive
+                                file downloads were skipped. Specify a TARGET
+                                to set how many levels to ascend or to which
+                                subcategory to jump to. Examples: '-A 3', '-A
+                                3:2', '-A 3:manga'
+    -T, --terminate N           Stop current & parent extractors and proceed
+                                with the next input URL after N consecutive
                                 file downloads were skipped
-    -T, --terminate N           Stop current and parent extractor runs after N
-                                consecutive file downloads were skipped
     --filesize-min SIZE         Do not download files smaller than SIZE (e.g.
                                 500k or 2.5M)
     --filesize-max SIZE         Do not download files larger than SIZE (e.g.
                                 500k or 2.5M)
-    --download-archive FILE     Record all downloaded or skipped files in FILE
+    --download-archive FILE     Record successfully downloaded files in FILE
                                 and skip downloading any file already in it
     --range RANGE               Index range(s) specifying which files to
                                 download. These can be either a constant value,

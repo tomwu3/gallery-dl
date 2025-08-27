@@ -25,6 +25,7 @@ CATEGORY_MAP = {
     "35photo"        : "35PHOTO",
     "adultempire"    : "Adult Empire",
     "agnph"          : "AGNPH",
+    "aibooru"        : "AIBooru",
     "allgirlbooru"   : "All girl",
     "ao3"            : "Archive of Our Own",
     "archivedmoe"    : "Archived.Moe",
@@ -33,15 +34,15 @@ CATEGORY_MAP = {
     "aryion"         : "Eka's Portal",
     "atfbooru"       : "ATFBooru",
     "azurlanewiki"   : "Azur Lane Wiki",
-    "b4k"            : "arch.b4k.co",
+    "b4k"            : "arch.b4k.dev",
     "baraag"         : "baraag",
     "batoto"         : "BATO.TO",
     "bbc"            : "BBC",
+    "booth"          : "BOOTH",
     "cien"           : "Ci-en",
     "cohost"         : "cohost!",
     "comicvine"      : "Comic Vine",
-    "coomerparty"    : "Coomer",
-    "deltaporno"     : "DeltaPorno",
+    "dankefuerslesen": "Danke fürs Lesen",
     "deviantart"     : "DeviantArt",
     "drawfriends"    : "Draw Friends",
     "dynastyscans"   : "Dynasty Reader",
@@ -54,66 +55,94 @@ CATEGORY_MAP = {
     "exhentai"       : "ExHentai",
     "fallenangels"   : "Fallen Angels Scans",
     "fanbox"         : "pixivFANBOX",
+    "fappic"         : "Fappic.com",
     "fashionnova"    : "Fashion Nova",
     "furaffinity"    : "Fur Affinity",
+    "furry34"        : "Furry 34 com",
+    "girlswithmuscle": "Girls with Muscle",
     "hatenablog"     : "HatenaBlog",
     "hbrowse"        : "HBrowse",
     "hentai2read"    : "Hentai2Read",
-    "hentaicosplays" : "Hentai Cosplay",
+    "hentaicosplay"  : "Hentai Cosplay",
+    "hentaienvy"     : "HentaiEnvy",
+    "hentaiera"      : "HentaiEra",
     "hentaifoundry"  : "Hentai Foundry",
     "hentaifox"      : "HentaiFox",
     "hentaihand"     : "HentaiHand",
     "hentaihere"     : "HentaiHere",
     "hentaiimg"      : "Hentai Image",
     "hentainexus"    : "HentaiNexus",
+    "hentairox"      : "HentaiRox",
+    "hentaizap"      : "HentaiZap",
+    "hiperdex"       : "HiperDEX",
     "hitomi"         : "Hitomi.la",
     "horne"          : "horne",
     "idolcomplex"    : "Idol Complex",
     "illusioncardsbooru": "Illusion Game Cards",
     "imagebam"       : "ImageBam",
     "imagefap"       : "ImageFap",
+    "imagepond"      : "ImagePond",
+    "imagetwist"     : "ImageTwist",
+    "imgadult"       : "ImgAdult",
     "imgbb"          : "ImgBB",
     "imgbox"         : "imgbox",
     "imagechest"     : "ImageChest",
+    "imgdrive"       : "ImgDrive.net",
     "imgkiwi"        : "IMG.Kiwi",
+    "imgtaxi"        : "ImgTaxi.com",
     "imgth"          : "imgth",
     "imgur"          : "imgur",
+    "imgwallet"      : "ImgWallet.com",
+    "imhentai"       : "IMHentai",
+    "imxto"          : "IMX.to",
     "joyreactor"     : "JoyReactor",
     "itchio"         : "itch.io",
     "jpgfish"        : "JPG Fish",
     "kabeuchi"       : "かべうち",
-    "kemonoparty"    : "Kemono",
+    "schalenetwork"  : "Schale Network",
+    "leakgallery"    : "Leak Gallery",
     "livedoor"       : "livedoor Blog",
+    "lofter"         : "LOFTER",
     "ohpolly"        : "Oh Polly",
     "omgmiamiswimwear": "Omg Miami Swimwear",
     "mangadex"       : "MangaDex",
     "mangafox"       : "Manga Fox",
     "mangahere"      : "Manga Here",
     "mangakakalot"   : "MangaKakalot",
-    "mangalife"      : "MangaLife",
-    "manganelo"      : "Manganato",
+    "manganato"      : "MangaNato",
     "mangapark"      : "MangaPark",
     "mangaread"      : "MangaRead",
-    "mangasee"       : "MangaSee",
     "mariowiki"      : "Super Mario Wiki",
     "mastodon.social": "mastodon.social",
     "mediawiki"      : "MediaWiki",
     "micmicidol"     : "MIC MIC IDOL",
     "myhentaigallery": "My Hentai Gallery",
     "myportfolio"    : "Adobe Portfolio",
-    "naverwebtoon"   : "NaverWebtoon",
+    "natomanga"      : "MangaNato",
+    "naver-blog"     : "Naver Blog",
+    "naver-chzzk"    : "CHZZK",
+    "naver-webtoon"  : "Naver Webtoon",
+    "nelomanga"      : "MangaNelo",
     "nhentai"        : "nhentai",
     "nijie"          : "nijie",
     "nozomi"         : "Nozomi.la",
+    "nozrip"         : "GaryC Booru",
     "nsfwalbum"      : "NSFWalbum.com",
-    "paheal"         : "rule #34",
+    "nudostar"       : "NudoStar.TV",
+    "paheal"         : "Rule 34",
     "photovogue"     : "PhotoVogue",
+    "picstate"       : "PicState",
     "pidgiwiki"      : "PidgiWiki",
     "pixeldrain"     : "pixeldrain",
-    "pornimagesxxx"  : "Porn Image",
+    "pixhost"        : "PiXhost",
+    "pixiv"          : "[pixiv]",
+    "pixiv-novel"    : "[pixiv] Novels",
+    "pornimage"      : "Porn Image",
     "pornpics"       : "PornPics.com",
     "pornreactor"    : "PornReactor",
+    "postimg"        : "Postimages",
     "readcomiconline": "Read Comic Online",
+    "redbust"        : "RedBust",
     "rbt"            : "RebeccaBlackTech",
     "redgifs"        : "RedGIFs",
     "rozenarcana"    : "Rozen Arcana",
@@ -128,7 +157,9 @@ CATEGORY_MAP = {
     "senmanga"       : "Sen Manga",
     "sensescans"     : "Sense-Scans",
     "sexcom"         : "Sex.com",
+    "silverpic"      : "SilverPic.com",
     "simplyhentai"   : "Simply Hentai",
+    "sizebooru"      : "Size Booru",
     "slickpic"       : "SlickPic",
     "slideshare"     : "SlideShare",
     "smugmug"        : "SmugMug",
@@ -138,19 +169,24 @@ CATEGORY_MAP = {
     "tbib"           : "The Big ImageBoard",
     "tcbscans"       : "TCB Scans",
     "tco"            : "Twitter t.co",
-    "tmohentai"      : "TMOHentai",
     "thatpervert"    : "ThatPervert",
     "thebarchive"    : "The /b/ Archive",
     "thecollection"  : "The /co/llection",
+    "tiktok"         : "TikTok",
+    "tmohentai"      : "TMOHentai",
     "tumblrgallery"  : "TumblrGallery",
+    "turboimagehost" : "TurboImageHost.com",
     "vanillarock"    : "もえぴりあ",
     "vidyart2"       : "/v/idyart2",
     "vidyapics"      : "Vidya Booru",
+    "vipr"           : "Vipr.im",
+    "visuabusters"   : "VISUABUSTERS",
     "vk"             : "VK",
     "vsco"           : "VSCO",
     "wallpapercave"  : "Wallpaper Cave",
     "webmshare"      : "webmshare",
-    "webtoons"       : "Webtoon",
+    "webtoons"       : "WEBTOON",
+    "weebcentral"    : "Weeb Central",
     "wikiart"        : "WikiArt.org",
     "wikigg"         : "wiki.gg",
     "wikimediacommons": "Wikimedia Commons",
@@ -158,6 +194,7 @@ CATEGORY_MAP = {
     "xhamster"       : "xHamster",
     "xvideos"        : "XVideos",
     "yandere"        : "yande.re",
+    "yiffverse"      : "Yiff verse",
 }
 
 SUBCATEGORY_MAP = {
@@ -172,7 +209,6 @@ SUBCATEGORY_MAP = {
     "issue"  : "Comic Issues",
     "manga"  : "Manga",
     "media"  : "Media Files",
-    "note"   : "Images from Notes",
     "popular": "Popular Images",
     "recent" : "Recent Images",
     "search" : "Search Results",
@@ -181,18 +217,26 @@ SUBCATEGORY_MAP = {
     "tweets" : "",
     "user"   : "User Profiles",
     "watch"  : "Watches",
-    "following"    : "Followed Users",
-    "related-pin"  : "related Pins",
-    "related-board": "",
+    "direct-messages": "DMs",
+    "following"      : "Followed Users",
+    "related-pin"    : "related Pins",
+    "related-board"  : "",
 
     "ao3": {
         "user-works"   : "",
         "user-series"  : "",
         "user-bookmark": "Bookmarks",
     },
+    "arcalive": {
+        "user": "User Posts",
+    },
     "artstation": {
         "artwork": "Artwork Listings",
         "collections": "",
+    },
+    "bilibili": {
+        "user-articles": "User Articles",
+        "user-articles-favorite": "User Article Favorites",
     },
     "bluesky": {
         "posts": "",
@@ -203,14 +247,25 @@ SUBCATEGORY_MAP = {
     "civitai": {
         "models": "Model Listings",
         "images": "Image Listings",
+        "videos": "Video Listings",
+        "posts" : "Post Listings",
+        "search-models": "Model Searches",
+        "search-images": "Image Searches",
         "user-models": "User Models",
-        "user-images": "User Images",
+        "user-images": ("User Images", "Image Reactions"),
         "user-posts" : "User Posts",
+        "user-videos": ("User Videos", "Video Reactions"),
+        "user-collections" : "User Collections",
+        "generated": "Generated Files",
     },
-    "coomerparty": {
+    "coomer": {
         "discord"       : "",
         "discord-server": "",
         "posts"         : "",
+    },
+    "Danbooru": {
+        "artist-search": "Artist Searches",
+        "favgroup": "Favorite Groups",
     },
     "desktopography": {
         "site": "",
@@ -220,6 +275,12 @@ SUBCATEGORY_MAP = {
         "stash" : "Sta.sh",
         "status": "Status Updates",
         "watch-posts": "",
+    },
+    "discord": {
+        "direct-message" : "",
+    },
+    "facebook": {
+        "photos" : "Profile Photos",
     },
     "fanbox": {
         "supporting": "Supported User Feed",
@@ -240,6 +301,7 @@ SUBCATEGORY_MAP = {
     },
     "imgur": {
         "favorite-folder": "Favorites Folders",
+        "me": "Personal Posts",
     },
     "inkbunny": {
         "unread": "Unread Submissions",
@@ -249,16 +311,37 @@ SUBCATEGORY_MAP = {
         "saved": "Saved Posts",
         "tagged": "Tagged Posts",
     },
-    "kemonoparty": {
+    "itaku": {
+        "posts": "",
+    },
+    "iwara": {
+        "user-images": "User Images",
+        "user-videos": "User Videos",
+        "user-playlists": "User Playlists",
+    },
+    "kemono": {
         "discord"       : "Discord Servers",
         "discord-server": "",
         "posts"         : "",
     },
+    "leakgallery": {
+        "trending" : "Trending Medias",
+        "mostliked": "Most Liked Posts",
+    },
     "lensdump": {
         "albums": "",
     },
+    "lofter": {
+        "blog-posts": "Blog Posts",
+    },
     "mangadex": {
-        "feed" : "Followed Feed",
+        "feed": "Updates Feed",
+        "following" : "Library",
+        "list": "MDLists",
+    },
+    "misskey": {
+        "note" : "Notes",
+        "notes": "User Notes",
     },
     "nijie": {
         "followed": "Followed Users",
@@ -269,6 +352,9 @@ SUBCATEGORY_MAP = {
         "pinit": "pin.it Links",
         "created": "Created Pins",
         "allpins": "All Pins",
+    },
+    "pixeldrain": {
+        "folder": "Filesystems",
     },
     "pixiv": {
         "me"  : "pixiv.me Links",
@@ -291,6 +377,9 @@ SUBCATEGORY_MAP = {
         "post"           : "Individual Posts",
         "shorturl"       : "",
     },
+    "redbust": {
+        "gallery": ("Galleries", "Categories"),
+    },
     "redgifs": {
         "collections": "",
     },
@@ -303,15 +392,22 @@ SUBCATEGORY_MAP = {
     "sexcom": {
         "pins": "User Pins",
     },
+    "sizebooru": {
+        "user": "User Uploads",
+    },
     "skeb": {
         "following"      : "Followed Creators",
         "following-users": "Followed Users",
+        "sentrequests"   : "Sent Requests",
     },
     "smugmug": {
         "path": "Images from Users and Folders",
     },
     "steamgriddb": {
         "asset": "Individual Assets",
+    },
+    "tiktok": {
+        "vmpost": "VM Posts",
     },
     "tumblr": {
         "day": "Days",
@@ -358,9 +454,13 @@ BASE_MAP = {
     "foolslide"   : "FoOlSlide Instances",
     "gelbooru_v01": "Gelbooru Beta 0.1.11",
     "gelbooru_v02": "Gelbooru Beta 0.2",
+    "hentaicosplays": "Hentai Cosplay Instances",
+    "imagehost"   : "Image Hosting Sites",
+    "IMHentai"    : "IMHentai and Mirror Sites",
     "jschan"      : "jschan Imageboards",
     "lolisafe"    : "lolisafe and chibisafe",
     "lynxchan"    : "LynxChan Imageboards",
+    "manganelo"   : "MangaNelo and Mirror Sites",
     "moebooru"    : "Moebooru and MyImouto",
     "szurubooru"  : "szurubooru Instances",
     "urlshortener": "URL Shorteners",
@@ -390,7 +490,7 @@ AUTH_MAP = {
     "bluesky"        : "Supported",
     "booruvar"       : "Supported",
     "boosty"         : _COOKIES,
-    "coomerparty"    : "Supported",
+    "coomer"         : "Supported",
     "danbooru"       : "Supported",
     "derpibooru"     : _APIKEY_DB,
     "deviantart"     : _OAUTH,
@@ -399,17 +499,21 @@ AUTH_MAP = {
     "e926"           : "Supported",
     "e-hentai"       : "Supported",
     "exhentai"       : "Supported",
+    "facebook"       : _COOKIES,
     "fanbox"         : _COOKIES,
     "fantia"         : _COOKIES,
     "flickr"         : _OAUTH,
     "furaffinity"    : _COOKIES,
     "furbooru"       : "API Key",
+    "girlswithmuscle": "Supported",
     "horne"          : "Required",
     "idolcomplex"    : "Supported",
     "imgbb"          : "Supported",
     "inkbunny"       : "Supported",
     "instagram"      : _COOKIES,
-    "kemonoparty"    : "Supported",
+    "iwara"          : "Supported",
+    "kemono"         : "Supported",
+    "madokami"       : "Required",
     "mangadex"       : "Supported",
     "mangoxo"        : "Supported",
     "mastodon.social": _OAUTH,
@@ -420,14 +524,17 @@ AUTH_MAP = {
     "pillowfort"     : "Supported",
     "pinterest"      : _COOKIES,
     "pixiv"          : _OAUTH,
+    "pixiv-novel"    : _OAUTH,
     "ponybooru"      : "API Key",
     "reddit"         : _OAUTH,
+    "rule34xyz"      : "Supported",
     "sankaku"        : "Supported",
     "scrolller"      : "Supported",
     "seiga"          : "Supported",
     "smugmug"        : _OAUTH,
     "subscribestar"  : "Supported",
     "tapas"          : "Supported",
+    "tiktok"         : _COOKIES,
     "tsumino"        : "Supported",
     "tumblr"         : _OAUTH,
     "twitter"        : "Supported",
@@ -500,7 +607,7 @@ def subcategory_text(bc, c, sc):
 
 def category_key(c):
     """Generate sorting keys by category"""
-    return category_text(c[0]).lower()
+    return category_text(c[0]).lower().lstrip("[")
 
 
 def subcategory_key(sc):
@@ -519,7 +626,11 @@ def build_extractor_list():
         if category in IGNORE_LIST:
             continue
         if category:
-            default[category].append(extr.subcategory)
+            if extr.basecategory == "imagehost":
+                base = categories[extr.basecategory]
+            else:
+                base = default
+            base[category].append(extr.subcategory)
             if category not in domains:
                 domains[category] = domain(extr)
         else:
@@ -544,28 +655,30 @@ def build_extractor_list():
         for subcategories in base.values():
             subcategories.sort(key=subcategory_key)
 
+    domains["pixiv-novel"] += "novel"
+
     # add e-hentai.org
     default["e-hentai"] = default["exhentai"]
     domains["e-hentai"] = domains["exhentai"].replace("x", "-")
 
-    # add coomer.party
-    default["coomerparty"] = default["kemonoparty"]
-    domains["coomerparty"] = domains["kemonoparty"].replace("kemono", "coomer")
-
-    # add hentai-cosplays sister sites (hentai-img, porn-images-xxx)
-    default["hentaiimg"] = default["hentaicosplays"]
-    domains["hentaiimg"] = "https://hentai-img.com/"
-
-    default["pornimagesxxx"] = default["hentaicosplays"]
-    domains["pornimagesxxx"] = "https://porn-images-xxx.com/"
-
-    # add manga4life.com
-    default["mangalife"] = default["mangasee"]
-    domains["mangalife"] = "https://manga4life.com/"
+    # add coomer.st
+    default["coomer"] = default["kemono"]
+    domains["coomer"] = "https://coomer.st/"
 
     # add wikifeetx.com
     default["wikifeetx"] = default["wikifeet"]
     domains["wikifeetx"] = "https://www.wikifeetx.com/"
+
+    # imgdrive / imgtaxi / imgwallet
+    base = categories["imagehost"]
+    base["imgtaxi"] = base["imgdrive"]
+    base["imgwallet"] = base["imgdrive"]
+    categories["imagehost"] = {k: base[k] for k in sorted(base)}
+    domains["imgtaxi"] = "https://imgtaxi.com/"
+    domains["imgwallet"] = "https://imgwallet.com/"
+
+    # add extra e621 extractors
+    categories["E621"]["e621"].extend(default.pop("e621", ()))
 
     return categories, domains
 
@@ -587,56 +700,59 @@ COLUMNS = (
 def generate_output(columns, categories, domains):
 
     thead = []
-    append = thead.append
-    append("<tr>")
+    thead.append("<tr>")
     for column in columns:
-        append("    <th>" + column[0] + "</th>")
-    append("</tr>")
+        thead.append(f"    <th>{column[0]}</th>")
+    thead.append("</tr>")
 
     tbody = []
-    append = tbody.append
-
     for bcat, base in categories.items():
-
         if bcat and base:
             name = BASE_MAP.get(bcat) or (bcat.capitalize() + " Instances")
-            append('\n<tr>\n    <td colspan="4"><strong>' +
-                   name + '</strong></td>\n</tr>')
+            tbody.append(f"""
+<tr id="{bcat}" title="{bcat}">
+    <td colspan="4"><strong>{name}</strong></td>
+</tr>\
+""")
             clist = base.items()
         else:
             clist = sorted(base.items(), key=category_key)
 
         for category, subcategories in clist:
-            append("<tr>")
+            tbody.append(f"""<tr id="{category}" title="{category}">""")
             for column in columns:
                 domain = domains[category]
                 content = column[2](bcat, category, subcategories, domain)
-                append("    <td>" + content + "</td>")
-            append("</tr>")
+                tbody.append(f"    <td>{content}</td>")
+            tbody.append("</tr>")
 
-    TEMPLATE = """# Supported Sites
+    NL = "\n"
+    GENERATOR = "/".join(os.path.normpath(__file__).split(os.sep)[-2:])
+    return f"""\
+# Supported Sites
 
-<!-- auto-generated by {} -->
+<!-- auto-generated by {GENERATOR} -->
 Consider all listed sites to potentially be NSFW.
 
 <table>
 <thead valign="bottom">
-{}
+{NL.join(thead)}
 </thead>
 <tbody valign="top">
-{}
+{NL.join(tbody)}
 </tbody>
 </table>
 """
-    return TEMPLATE.format(
-        "/".join(os.path.normpath(__file__).split(os.sep)[-2:]),
-        "\n".join(thead),
-        "\n".join(tbody),
-    )
 
 
-categories, domains = build_extractor_list()
-PATH = (sys.argv[1] if len(sys.argv) > 1 else
-        util.path("docs", "supportedsites.md"))
-with util.lazy(PATH) as fp:
-    fp.write(generate_output(COLUMNS, categories, domains))
+def main(path=None):
+    categories, domains = build_extractor_list()
+
+    if path is None:
+        path = util.path("docs", "supportedsites.md")
+    with util.lazy(path) as fp:
+        fp.write(generate_output(COLUMNS, categories, domains))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1] if len(sys.argv) > 1 else None)

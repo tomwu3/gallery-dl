@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2015-2023 Mike Fährmann
+# Copyright 2015-2025 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -117,6 +117,24 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(
             config.accumulate(("c", "c"), "l"), [5, 6])
 
+        config.set(()        , "l", 4)
+        config.set(("c",)    , "l", [2, 3])
+        config.set(("c", "c"), "l", 1)
+        self.assertEqual(
+            config.accumulate((), "l")        , [4])
+        self.assertEqual(
+            config.accumulate(("c",), "l")    , [2, 3, 4])
+        self.assertEqual(
+            config.accumulate(("c", "c"), "l"), [1, 2, 3, 4])
+
+        config.set(("c",), "l", None)
+        self.assertEqual(
+            config.accumulate((), "l")        , [4])
+        self.assertEqual(
+            config.accumulate(("c",), "l")    , [4])
+        self.assertEqual(
+            config.accumulate(("c", "c"), "l"), [1, 4])
+
     def test_set(self):
         config.set(()        , "c", [1, 2, 3])
         config.set(("b",)    , "c", [1, 2, 3])
@@ -149,6 +167,7 @@ class TestConfig(unittest.TestCase):
     def test_apply(self):
         options = (
             (("b",)    , "c", [1, 2, 3]),
+            (("e", "f"), "g", 234),
             (("e", "f"), "g", 234),
         )
 
@@ -204,14 +223,13 @@ class TestConfigFiles(unittest.TestCase):
         self.assertIsInstance(cfg, dict)
         self.assertTrue(cfg)
 
-    @staticmethod
-    def _load(name):
+    def _load(self, name):
         path = os.path.join(ROOTDIR, "docs", name)
         try:
             with open(path) as fp:
                 return util.json_loads(fp.read())
         except FileNotFoundError:
-            raise unittest.SkipTest(path + " not available")
+            raise unittest.SkipTest(f"{path} not available")
 
 
 if __name__ == "__main__":

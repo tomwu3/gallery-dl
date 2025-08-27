@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2021-2023 Mike Fährmann
+# Copyright 2021-2025 Mike Fährmann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -9,7 +9,6 @@
 """Filesystem path handling"""
 
 import os
-import re
 import shutil
 import functools
 from . import util, formatter, exception
@@ -38,7 +37,7 @@ class PathFormat():
                 filename_fmt = extractor.filename_fmt
             elif isinstance(filename_fmt, dict):
                 self.filename_conditions = [
-                    (util.compile_expression(expr),
+                    (util.compile_filter(expr),
                      formatter.parse(fmt, kwdefault).format_map)
                     for expr, fmt in filename_fmt.items() if expr
                 ]
@@ -57,7 +56,7 @@ class PathFormat():
                 directory_fmt = extractor.directory_fmt
             elif isinstance(directory_fmt, dict):
                 self.directory_conditions = [
-                    (util.compile_expression(expr), [
+                    (util.compile_filter(expr), [
                         formatter.parse(fmt, kwdefault).format_map
                         for fmt in fmts
                     ])
@@ -91,6 +90,7 @@ class PathFormat():
 
         restrict = config("path-restrict", "auto")
         replace = config("path-replace", "_")
+        conv = config("path-convert")
         if restrict == "auto":
             restrict = "\\\\|/<>:\"?*" if WINDOWS else "/"
         elif restrict == "unix":
@@ -101,10 +101,10 @@ class PathFormat():
             restrict = "^0-9A-Za-z_."
         elif restrict == "ascii+":
             restrict = "^0-9@-[\\]-{ #-)+-.;=!}~"
-        self.clean_segment = self._build_cleanfunc(restrict, replace)
+        self.clean_segment = _build_cleanfunc(restrict, replace, conv)
 
         remove = config("path-remove", "\x00-\x1f\x7f")
-        self.clean_path = self._build_cleanfunc(remove, "")
+        self.clean_path = _build_cleanfunc(remove, "")
 
         strip = config("path-strip", "auto")
         if strip == "auto":
@@ -123,7 +123,7 @@ class PathFormat():
             basedir = config("base-directory")
             sep = os.sep
             if basedir is None:
-                basedir = "." + sep + "gallery-dl" + sep
+                basedir = f".{sep}gallery-dl{sep}"
             elif basedir:
                 basedir = util.expand_path(basedir)
                 altsep = os.altsep
@@ -134,26 +134,17 @@ class PathFormat():
             basedir = self.clean_path(basedir)
         self.basedirectory = basedir
 
-    @staticmethod
-    def _build_cleanfunc(chars, repl):
-        if not chars:
-            return util.identity
-        elif isinstance(chars, dict):
-            def func(x, table=str.maketrans(chars)):
-                return x.translate(table)
-        elif len(chars) == 1:
-            def func(x, c=chars, r=repl):
-                return x.replace(c, r)
-        else:
-            return functools.partial(
-                re.compile("[" + chars + "]").sub, repl)
-        return func
+    def __str__(self):
+        return self.realpath
 
     def open(self, mode="wb"):
         """Open file and return a corresponding file object"""
         try:
             return open(self.temppath, mode)
         except FileNotFoundError:
+            if "r" in mode:
+                # '.part' file no longer exists
+                return util.NullContext()
             os.makedirs(self.realdirectory)
             return open(self.temppath, mode)
 
@@ -163,8 +154,7 @@ class PathFormat():
             return self.check_file()
         return False
 
-    @staticmethod
-    def check_file():
+    def check_file(self):
         return True
 
     def _enum_file(self):
@@ -185,8 +175,7 @@ class PathFormat():
         """Build directory path and create it if necessary"""
         self.kwdict = kwdict
 
-        segments = self.build_directory(kwdict)
-        if segments:
+        if segments := self.build_directory(kwdict):
             self.directory = directory = self.basedirectory + self.clean_path(
                 os.sep.join(segments) + os.sep)
         else:
@@ -263,24 +252,22 @@ class PathFormat():
     def build_directory(self, kwdict):
         """Apply 'kwdict' to directory format strings"""
         segments = []
-        append = segments.append
         strip = self.strip
 
         try:
             for fmt in self.directory_formatters:
                 segment = fmt(kwdict).strip()
-                if strip and segment != "..":
+                if strip and segment not in {".", ".."}:
                     # remove trailing dots and spaces (#647)
                     segment = segment.rstrip(strip)
                 if segment:
-                    append(self.clean_segment(segment))
+                    segments.append(self.clean_segment(segment))
             return segments
         except Exception as exc:
             raise exception.DirectoryFormatError(exc)
 
     def build_directory_conditional(self, kwdict):
         segments = []
-        append = segments.append
         strip = self.strip
 
         try:
@@ -294,7 +281,7 @@ class PathFormat():
                 if strip and segment != "..":
                     segment = segment.rstrip(strip)
                 if segment:
-                    append(self.clean_segment(segment))
+                    segments.append(self.clean_segment(segment))
             return segments
         except Exception as exc:
             raise exception.DirectoryFormatError(exc)
@@ -329,6 +316,11 @@ class PathFormat():
             pass
         return 0
 
+    def set_mtime(self, path=None):
+        if (mtime := (self.kwdict.get("_mtime_meta") or
+                      self.kwdict.get("_mtime_http"))):
+            util.set_mtime(self.realpath if path is None else path, mtime)
+
     def finalize(self):
         """Move tempfile to its target location"""
         if self.delete:
@@ -342,19 +334,72 @@ class PathFormat():
                 try:
                     os.replace(self.temppath, self.realpath)
                 except FileNotFoundError:
-                    # delayed directory creation
-                    os.makedirs(self.realdirectory)
+                    try:
+                        # delayed directory creation
+                        os.makedirs(self.realdirectory)
+                    except FileExistsError:
+                        # file at self.temppath does not exist
+                        return False
                     continue
                 except OSError:
                     # move across different filesystems
                     try:
                         shutil.copyfile(self.temppath, self.realpath)
                     except FileNotFoundError:
-                        os.makedirs(self.realdirectory)
+                        try:
+                            os.makedirs(self.realdirectory)
+                        except FileExistsError:
+                            return False
                         shutil.copyfile(self.temppath, self.realpath)
                     os.unlink(self.temppath)
                 break
 
-        mtime = self.kwdict.get("_mtime")
-        if mtime:
-            util.set_mtime(self.realpath, mtime)
+        self.set_mtime()
+
+
+def _build_convertfunc(func, conv):
+    if len(conv) <= 1:
+        conv = formatter._CONVERSIONS[conv]
+        return lambda x: conv(func(x))
+
+    def convert_many(x):
+        x = func(x)
+        for conv in convs:
+            x = conv(x)
+        return x
+    convs = [formatter._CONVERSIONS[c] for c in conv]
+    return convert_many
+
+
+def _build_cleanfunc(chars, repl, conv=None):
+    if not chars:
+        func = util.identity
+    elif isinstance(chars, dict):
+        if 0 not in chars:
+            chars = _process_repl_dict(chars)
+            chars[0] = None
+
+        def func(x):
+            return x.translate(table)
+        table = str.maketrans(chars)
+    elif len(chars) == 1:
+        def func(x):
+            return x.replace(chars, repl)
+    else:
+        func = functools.partial(util.re(f"[{chars}]").sub, repl)
+    return _build_convertfunc(func, conv) if conv else func
+
+
+def _process_repl_dict(chars):
+    # can't modify 'chars' while *directly* iterating over its keys
+    for char in [c for c in chars if len(c) > 1]:
+        if len(char) == 3 and char[1] == "-":
+            citer = range(ord(char[0]), ord(char[2])+1)
+        else:
+            citer = char
+
+        repl = chars.pop(char)
+        for c in citer:
+            chars[c] = repl
+
+    return chars
